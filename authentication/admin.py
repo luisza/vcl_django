@@ -4,19 +4,11 @@ from django.contrib import admin
 from authentication.models import (User,
                                     Usergroup,
                                     Usergroupmembers,
-                                    Usergrouppriv,
-                                    Usergroupprivtype,
-                                    Userpriv,
-                                    Userprivtype,
                                     Shibauth,
                                     Localauth)
 
 admin.site.register([User,
                                     Usergroup,
                                     Usergroupmembers,
-                                    Usergrouppriv,
-                                    Usergroupprivtype,
-                                    Userpriv,
-                                    Userprivtype,
                                     Shibauth,
                                     Localauth])

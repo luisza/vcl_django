@@ -9,7 +9,6 @@ from provisioning.models import (Provisioning,
                                     Resourcegroup,
                                     Resourcegroupmembers,
                                     Resourcemap,
-                                    Resourcepriv,
                                     Statgraphcache)
 
 admin.site.register([Provisioning,
@@ -19,5 +18,4 @@ admin.site.register([Provisioning,
                         Resourcegroup,
                         Resourcegroupmembers,
                         Resourcemap,
-                        Resourcepriv,
                         Statgraphcache])

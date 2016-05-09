@@ -2,27 +2,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from core.models import Platform, Module, Osinstalltype, Affiliation
+from core.models import Platform, Module, Osinstalltype, Affiliation, Ostype,\
+    Imagetype
 from authentication.models import User
-
-
-class Ostype(models.Model):
-    name = models.CharField(unique=True, max_length=30)
-
-    class Meta:
-        
-        db_table = 'OStype'
-        
-
-        
-class Imagetype(models.Model):
-    id = models.SmallIntegerField(primary_key=True)
-    name = models.CharField(unique=True, max_length=16)
-
-    class Meta:
-        
-        db_table = 'imagetype'
-
 
         
 # Create your models here.
@@ -119,16 +101,6 @@ class Imagerevisioninfo(models.Model):
     class Meta:
         
         db_table = 'imagerevisioninfo'
-
-
-
-class Vmtype(models.Model):
-    name = models.CharField(max_length=30)
-
-    class Meta:
-        
-        db_table = 'vmtype'
-
 
 class Winkms(models.Model):
     affiliationid = models.ForeignKey(Affiliation, db_column='affiliationid')

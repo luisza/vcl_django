@@ -17,4 +17,5 @@ graph nat
 graph openstack
 graph provisioning
 graph reservations
-
+graph scheduling
+graph authorization

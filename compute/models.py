@@ -6,24 +6,8 @@ from image.models import Image, Imagerevision, Imagetype
 from provisioning.models import Provisioning
 from authentication.models import User, Usergroup
 from managementnode.models import Managementnode
+from scheduling.models import Schedule
 # Create your models here.
-
-class Schedule(models.Model):
-    name = models.CharField(unique=True, max_length=25)
-    ownerid = models.ForeignKey(User, db_column='ownerid')
-
-    class Meta:
-        
-        db_table = 'schedule'
-
-class Scheduletimes(models.Model):
-    scheduleid = models.ForeignKey(Schedule, db_column='scheduleid')
-    start = models.SmallIntegerField()
-    end = models.SmallIntegerField()
-
-    class Meta:
-        
-        db_table = 'scheduletimes'
 
 
 class Computer(models.Model):
@@ -130,73 +114,6 @@ class Computerloadflow(models.Model):
 
 
 
-class Blockrequest(models.Model):
-    name = models.CharField(max_length=80)
-    imageid = models.ForeignKey(Image, db_column='imageid')
-    nummachines = models.IntegerField(db_column='numMachines')  # Field name made lowercase.
-    groupid = models.ForeignKey(Usergroup, db_column='groupid', blank=True, null=True)
-    repeating = models.CharField(max_length=7)
-    ownerid = models.ForeignKey(User, db_column='ownerid')
-    managementnodeid = models.ForeignKey(Managementnode, db_column='managementnodeid', blank=True, null=True)
-    expiretime = models.DateTimeField(db_column='expireTime')  # Field name made lowercase.
-    processing = models.IntegerField()
-    status = models.CharField(max_length=9)
-    comments = models.TextField(blank=True, null=True)
-
-    class Meta:
-        
-        db_table = 'blockRequest'
-
-
-class Blocktimes(models.Model):
-    blockrequestid = models.ForeignKey(Blockrequest, db_column='blockRequestid')  # Field name made lowercase.
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    processed = models.IntegerField()
-    skip = models.IntegerField()
-
-    class Meta:
-        
-        db_table = 'blockTimes'
-        
-class Blockcomputers(models.Model):
-    blocktimeid = models.ForeignKey(Blocktimes, db_column='blockTimeid')  # Field name made lowercase.
-    computerid = models.ForeignKey(Computer, db_column='computerid')
-    imageid = models.ForeignKey(Image, db_column='imageid')
-    reloadrequestid = models.IntegerField()
-
-    class Meta:
-        
-        db_table = 'blockComputers'
-        unique_together = (('blocktimeid', 'computerid'),)
-
-
-
-class Blockwebdate(models.Model):
-    blockrequestid = models.ForeignKey(Blockrequest, db_column='blockRequestid')  # Field name made lowercase.
-    start = models.DateField()
-    end = models.DateField()
-    days = models.IntegerField(blank=True, null=True)
-    weeknum = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        
-        db_table = 'blockWebDate'
-
-
-class Blockwebtime(models.Model):
-    blockrequestid = models.ForeignKey(Blockrequest, db_column='blockRequestid')  # Field name made lowercase.
-    starthour = models.IntegerField()
-    startminute = models.IntegerField()
-    startmeridian = models.CharField(max_length=2)
-    endhour = models.IntegerField()
-    endminute = models.IntegerField()
-    endmeridian = models.CharField(max_length=2)
-    order = models.IntegerField()
-
-    class Meta:
-        
-        db_table = 'blockWebTime'
 
 class Semaphore(models.Model):
     computerid = models.ForeignKey(Computer, db_column='computerid')

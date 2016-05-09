@@ -4,9 +4,19 @@ from django.contrib import admin
 from reservations.models import (Request,
                                 Serverrequest,
                                 Reservation,
-                                Reservationaccounts)
+                                Reservationaccounts,
+                                Blockrequest,
+                                Blocktimes,
+                                Blockcomputers,
+                                Blockwebdate,
+                                Blockwebtime,)
 
 admin.site.register([Request,
                         Serverrequest,
                         Reservation,
-                        Reservationaccounts])
+                        Reservationaccounts,
+                        Blockrequest,
+                        Blocktimes,
+                        Blockcomputers,
+                        Blockwebdate,
+                        Blockwebtime,])

@@ -2,33 +2,23 @@ from django.contrib import admin
 
 # Register your models here.
 
-from compute.models import (Scheduletimes,
+from compute.models import (
                             Computer,
                             Vmprofile,
                             Vmhost,
                             Computerloadstate,
                             Computerloadflow,
-                            Blockrequest,
-                            Blocktimes,
-                            Blockcomputers,
-                            Blockwebdate,
-                            Blockwebtime,
                             Semaphore,
                             Serverprofile,
                             Clickthroughs
                             )
 
-admin.site.register([Scheduletimes,
+admin.site.register([
                     Computer,
                     Vmprofile,
                     Vmhost,
                     Computerloadstate,
                     Computerloadflow,
-                    Blockrequest,
-                    Blocktimes,
-                    Blockcomputers,
-                    Blockwebdate,
-                    Blockwebtime,
                     Semaphore,
                     Serverprofile,
                     Clickthroughs

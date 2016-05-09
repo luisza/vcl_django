@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from core.models import Module, Osinstalltype, Privnode, Affiliation
+from core.models import Module, Osinstalltype, Affiliation
 from authentication.models import Usergroup
 # Create your models here.
 
@@ -75,17 +75,6 @@ class Resourcemap(models.Model):
         
         db_table = 'resourcemap'
         unique_together = (('resourcegroupid1', 'resourcegroupid2'),)
-
-
-class Resourcepriv(models.Model):
-    resourcegroupid = models.ForeignKey(Resourcegroup, db_column='resourcegroupid')
-    privnodeid = models.ForeignKey(Privnode, db_column='privnodeid')
-    type = models.CharField(max_length=13)
-
-    class Meta:
-        
-        db_table = 'resourcepriv'
-        unique_together = (('resourcegroupid', 'privnodeid', 'type'),)
 
 
 class Statgraphcache(models.Model):

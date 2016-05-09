@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from core.models import Imtype, Affiliation, Privnode
+from core.models import Imtype, Affiliation
 # Create your models here.
 
 class User(models.Model):
@@ -62,47 +62,6 @@ class Usergroupmembers(models.Model):
         
         db_table = 'usergroupmembers'
         unique_together = (('userid', 'usergroupid'),)
-
-
-class Usergrouppriv(models.Model):
-    usergroupid = models.ForeignKey(Usergroup, db_column='usergroupid')
-    userprivtypeid = models.ForeignKey('Usergroupprivtype', db_column='userprivtypeid')
-
-    class Meta:
-        
-        db_table = 'usergrouppriv'
-        unique_together = (('usergroupid', 'userprivtypeid'),)
-
-
-class Usergroupprivtype(models.Model):
-    name = models.CharField(max_length=50)
-    help = models.TextField(blank=True, null=True)
-
-    class Meta:
-        
-        db_table = 'usergroupprivtype'
-
-
-class Userpriv(models.Model):
-    #id = models.AutoField()
-    userid = models.ForeignKey(User, db_column='userid', blank=True, null=True)
-    usergroupid = models.ForeignKey(Usergroup, db_column='usergroupid', blank=True, null=True)
-    privnodeid = models.ForeignKey(Privnode, db_column='privnodeid')
-    userprivtypeid = models.ForeignKey('Userprivtype', db_column='userprivtypeid')
-
-    class Meta:
-        
-        db_table = 'userpriv'
-        unique_together = (('userid', 'privnodeid', 'userprivtypeid'),)
-
-
-class Userprivtype(models.Model):
-    id = models.SmallIntegerField(primary_key=True)
-    name = models.CharField(unique=True, max_length=50)
-
-    class Meta:
-        
-        db_table = 'userprivtype'
 
 
 class Shibauth(models.Model):

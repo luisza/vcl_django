@@ -49,6 +49,8 @@ INSTALLED_APPS = (
     'nat',
     'openstack',
     'logs',
+    'scheduling',
+    'authorization',
 )
 
 MIDDLEWARE_CLASSES = (

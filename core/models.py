@@ -10,6 +10,29 @@ class Imtype(models.Model):
         
         db_table = 'IMtype'
 
+class Ostype(models.Model):
+    name = models.CharField(unique=True, max_length=30)
+
+    class Meta:
+        
+        db_table = 'OStype'
+        
+class Vmtype(models.Model):
+    name = models.CharField(max_length=30)
+
+    class Meta:
+        
+        db_table = 'vmtype'
+        
+class Imagetype(models.Model):
+    id = models.SmallIntegerField(primary_key=True)
+    name = models.CharField(unique=True, max_length=16)
+
+    class Meta:
+        
+        db_table = 'imagetype'
+
+
 class State(models.Model):
     name = models.CharField(unique=True, max_length=20)
 
@@ -56,15 +79,22 @@ class Affiliation(models.Model):
     class Meta:
         
         db_table = 'affiliation'
-        
-class Privnode(models.Model):
-    parent = models.ForeignKey('self', db_column='parent')
-    name = models.CharField(max_length=50)
+
+class Userprivtype(models.Model):
+    id = models.SmallIntegerField(primary_key=True)
+    name = models.CharField(unique=True, max_length=50)
 
     class Meta:
         
-        db_table = 'privnode'
-        unique_together = (('parent', 'name'),)
+        db_table = 'userprivtype'
+
+class Usergroupprivtype(models.Model):
+    name = models.CharField(max_length=50)
+    help = models.TextField(blank=True, null=True)
+
+    class Meta:
+        
+        db_table = 'usergroupprivtype'        
 
 ## Those models are not related
 class Variable(models.Model):
